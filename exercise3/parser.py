@@ -1,4 +1,5 @@
 import csv,sys
+import numpy as np
 from matplotlib import pyplot as plt
 
 class Graph:
@@ -60,7 +61,7 @@ class Graph:
         print("\r\n\t\tEND\r\n")
     
     def show_histogram(self):
-        plt.hist([self.node_degree], color=['red'])
+        plt.hist([self.node_degree], bins=list(range(min(self.node_degree), max(self.node_degree))) ,color=['red'])
         plt.xlabel("# degree")
         plt.ylabel("# of nodes")
         plt.title("Frequency distribution")
