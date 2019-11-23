@@ -15,36 +15,36 @@ diam
 
 # Floyd Warshall Algorithm 
 floyd <- function(dataFrame){
-  adjecency_matrix <- matrix(data = Inf , nrow = max(df[1]), ncol = max(df[1]))
+  adj_matrix <- matrix(data = Inf , nrow = max(df[1]), ncol = max(df[1]))
   for (row in 1:nrow(dataFrame)) {
      node1 <- dataFrame[row,1]
      node2 <- dataFrame[row,2]
-     adjecency_matrix[node1,node2] <- 1
+     adj_matrix[node1,node2] <- 1
   }
 
-  for(index in 1:nrow(adjecency_matrix)){
-    adjecency_matrix[index,index] <- 0
+  for(index in 1:nrow(adj_matrix)){
+    adj_matrix[index,index] <- 0
   }
   
-  for (k in 1:nrow(adjecency_matrix)) {
-     for (i in 1:nrow(adjecency_matrix)) {
-        for (j in 1:nrow(adjecency_matrix)) {
-            dist1 <- adjecency_matrix[i,j]
-            dist2 <- adjecency_matrix[i,k]
-            dist3 <- adjecency_matrix[k,j]
+  for (k in 1:nrow(adj_matrix)) {
+     for (i in 1:nrow(adj_matrix)) {
+        for (j in 1:nrow(adj_matrix)) {
+            dist1 <- adj_matrix[i,j]
+            dist2 <- adj_matrix[i,k]
+            dist3 <- adj_matrix[k,j]
             if (dist1 > dist2 + dist3) {
-               adjecency_matrix[i,j] <- dist2 + dist3
+               adj_matrix[i,j] <- dist2 + dist3
             }
         }
      }
   }
-  return(adjecency_matrix)
+  return(adj_matrix)
 }
 
 min_distance_between_nodes = floyd(df)
 
 print("Mininum distance between all pair of vertexes: ")
-min_distance_between_nodes
+as.data.frame(min_distance_between_nodes)
 
 # Mean distance
 
@@ -66,10 +66,9 @@ mean_distance_for_each_vertex <- function(min_adj_matrix){
 mean_distances = mean_distance_for_each_vertex(min_distance_between_nodes)
 
 print("Mean distance of each vertex: ")
-mean_distances
+as.data.frame(mean_distances)
 
 # Frequency of distances
-
 frequency_table = table(min_distance_between_nodes)
 
 df_frequency_table <- as.data.frame(frequency_table)
