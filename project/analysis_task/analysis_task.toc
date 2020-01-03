@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1} African Banking Crisis }{1}{section.1}% 
+\contentsline {section}{\numberline {2} Continuous Variable Analysis}{2}{section.2}% 
+\contentsline {section}{\numberline {3}Systemic Crisis}{4}{section.3}% 
+\contentsline {section}{\numberline {4}Annual CPI Inflation}{5}{section.4}% 
+\contentsline {subsection}{\numberline {4.1} Banking Crisis }{5}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2} Inflation Crisis }{6}{subsection.4.2}% 
+\contentsline {section}{\numberline {5} Independence }{9}{section.5}% 
