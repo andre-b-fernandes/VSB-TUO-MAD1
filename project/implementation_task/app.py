@@ -39,10 +39,10 @@ class App:
         else:
             raise ValueError("The provided columns are not all part of the original dataset")
     
-    def perform_algorithm(self, label1, label2):
+    def perform_algorithm(self, n_clusters, label1, label2):
         self.__preprocess_dataframe()
         self.calculate_stats()
-        kmeans = K_Means_Clustering(self.data_frame, 2)
+        kmeans = K_Means_Clustering(self.data_frame, n_clusters)
         centroids, clusters = kmeans.k_means_algorithm()
         plot_name = plot_clusters_2d(clusters, centroids,  label1, label2)
         self.construct_pdf(plot_name)
