@@ -4,9 +4,12 @@ if (!require("dplyr"))
 if (!require("ggplot2")) 
   install.packages("ggplot2")
 
+if (!require("cluster")) 
+  install.packages("cluster")
+
 library(ggplot2)
 library(dplyr)
-
+library(cluster)
 
 #dataset
 df <- read.csv("../african_crises.csv", header=TRUE , sep = ',', dec = '.')
@@ -105,4 +108,13 @@ ggplot(data.frame(countries=c("algeria","angola","central_african_republic","ivo
 #5th plots
 ggplot(data = df, aes(y = independence, x = year, colour=banking_crisis)) + geom_point() + scale_color_manual(values=c("no_crisis" = "blue", "crisis" = "red"))
 ggplot(data = nigeria, aes(y = independence, x = year, colour=banking_crisis)) + geom_point() + scale_color_manual(values=c("no_crisis" = "blue", "crisis" = "red"))
+#Cluster
+# K-Means Clustering with 2 clusters
+parsed_df <- subset(df, select=systemic_crisis:inflation_crises) 
+fit <- kmeans(parsed_df, 2)
+parsed_df$cluster <- fit$cluster
+# Cluster Plot against 1st 2 principal components
+#clusplot(parsed_df, fit$cluster, color=TRUE, shade=TRUE, labels=2, lines=0)
+ggplot(data = parsed_df, aes(x = inflation_annual_cpi, y = exch_usd, colour=cluster)) + geom_point() + scale_color_gradient()
 
+summary(df)
